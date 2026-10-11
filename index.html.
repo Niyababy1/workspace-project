@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #121212; color: white; text-align: center; padding: 50px; }
+        input { padding: 10px; width: 60%; border: none; border-radius: 4px; margin-right: 10px; }
+        button { padding: 10px 20px; border: none; background-color: #0095f6; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #1877f2; }
+    </style>
+</head>
+<body>
+    <h1>Web Portal</h1>
+    <p>Enter a URL to browse securely:</p>
+    
+    <!-- Uses a public, open-source proxy fallback router -->
+    <form id="proxyForm" onsubmit="browseWeb(event)">
+        <input type="text" id="urlInput" value="https://www.instagram.com" placeholder="https://example.com">
+        <button type="submit">Go</button>
+    </form>
+
+    <script>
+        function browseWeb(event) {
+            event.preventDefault();
+            let targetUrl = document.getElementById('urlInput').value;
+            if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+                targetUrl = 'https://' + targetUrl;
+            }
+            // Routes traffic through an open-source web proxy engine worker
+            window.location.href = "https://googleusercontent.com" + encodeURIComponent(targetUrl);
+        }
+    </script>
+</body>
+</html>
